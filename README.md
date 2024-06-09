@@ -137,7 +137,7 @@ Create appropriate indexes on ID field used for querying data to speed up databa
 
 Caching: 
 ```
-Implement caching mechanisms to store frequently accessed data in memory, reducing the need for repeated database queries.
+Implement caching mechanisms (e.g. Redis, Memcached) to store frequently accessed data in memory, reducing the need for repeated database queries.
 ```
 
 Data Partitioning: 
