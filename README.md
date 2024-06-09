@@ -8,21 +8,36 @@ To run this application locally, follow these steps:
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone <repository_url>
+   git clone git@github.com:anupam587/verve-group.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd <project_directory>
+   cd verve-group
    ```
 3. Install the required Python dependencies using pip:
    ```bash
    pip install -r requirements.txt
    ```
+4. Default App configuration
+   ```
+   App_host: localhost
+   App_port: 1321
+   ```
+5. Default Mongodb configuration:
+   ```
+   mongo_host: mongodb || 127.0.0.1 ||
+   mongo_username: admin
+   mongo_password: password
+   mongo_dbname: vervedb
+   connection string: mongodb://admin:password@127.0.0.1:27017/?tls=false
+   ```
+6. Above configuration can be changed in config.json and .env file.
 
 ## Running the Application
 
 Once the dependencies are installed, you can run the FastAPI application and MongoDB server using Docker Compose. Ensure Docker is installed and running on your system.
 
+#### first way
 1. Build the Docker images:
    ```bash
    docker-compose build
@@ -32,7 +47,16 @@ Once the dependencies are installed, you can run the FastAPI application and Mon
    docker-compose up
    ```
 
-The FastAPI server will be accessible at http://localhost:1321.
+#### second way
+   ```bash
+   docker-compose up --build
+   ```
+
+Note:
+Application server and mongodb will be running in seprate container.
+
+
+The Application server(FastAPI) will be accessible at http://localhost:1321.
 
 #### Note: 
 config.json and .env file contains configuration parameters for running application server
@@ -126,12 +150,14 @@ Resource Allocation:
 Allocate sufficient resources (CPU, memory, disk) to the application and database servers to ensure optimal performance. Monitor resource usage and scale up or out as needed.
 ```
 
-### 3. Peak Period Performance (more than 1M requests/min)
+### 3. Operate App in Production
 #### Deployment:
 ```
 1. Choose a cloud provider or hosting service (e.g., AWS, GCP, Azure) for deploying your application.
-2. Set up a virtual machine (VM) or containerized environment (e.g., Docker, Kubernetes) to host your application.
-3. Deploy Application server and MongoDB server to the chosen environment.
+2. Use Jenkins to create the CI/CD pipeline 
+3. Add few unit test cases (pytest framework) in application to test basic functionality before deploying in cloud.
+3. Set up a virtual machine (VM) or containerized environment (e.g., Docker, Kubernetes) to host your application.
+3. Deploy Application server on (ec2 or eks instances) and MongoDB server to the chosen environment.
 4. Configure network settings, security policies, and firewall rules to ensure proper communication and access control.
 ```
 #### Scaling:
